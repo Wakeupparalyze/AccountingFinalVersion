@@ -1,0 +1,100 @@
+﻿<Window x:Class="Accounting.StatisticsWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Accounting"
+        mc:Ignorable="d"
+        Title="Статистика пользователя" MinHeight="650" MinWidth="1250">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Grid.ColumnSpan="2" HorizontalAlignment="Center" Content="{Binding User.FIO}"/>
+        <Label FontWeight="Bold" Grid.Row="1" HorizontalAlignment="Center" Content="Ваши транзакции"/>
+        <ListView Grid.Row="2" ItemsSource="{Binding Finances}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding IdIncomeOrExpensesNavigation.Name}" Header="Тип транзакции"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding IdTypeIncomeNavigation.Name}" Header="Тип дохода"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding IdTypeExpensesNavigation.Name}" Header="Тип расхода"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Sum}" Header="Сумма"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Date, StringFormat='dd-MM-yyyy'}" Header="Дата" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Label FontWeight="Bold" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Content="Статистика"/>
+        <StackPanel HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2">
+            <StackPanel>
+                <StackPanel  Orientation="Horizontal">
+                    <Label Content="Сумма ваших средств: "/>
+                    <Label Content="{Binding Budget.Total}"/>
+                    <Label Content="₽"/>
+                </StackPanel>
+                <Label HorizontalAlignment="Center" FontWeight="DemiBold" Content="Расходы"/>
+                
+            
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Потрачено за сегодня: "/>
+                    <Label Content="{Binding AllExpensesToday}"/>
+                    <Label Content="₽"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Потрачено в этом месяце: "/>
+                    <Label Content="{Binding AllExpensesMonth}"/>
+                    <Label Content="₽"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Потрачено в этом году: "/>
+                    <Label Content="{Binding AllExpensesYear}"/>
+                    <Label Content="₽"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Потрачено за всё время: "/>
+                    <Label Content="{Binding AllExpenses}"/>
+                    <Label Content="₽"/>
+                </StackPanel>
+            </StackPanel>
+            
+            <StackPanel>
+                <Label FontWeight="DemiBold" HorizontalAlignment="Center" Content="Доходы"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Доход за сегодня: "/>
+                    <Label Content="{Binding AllIncomeToday}"/>
+                    <Label Content="₽"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Доход в этом месяце: "/>
+                    <Label Content="{Binding AllIncomeMonth}"/>
+                    <Label Content="₽"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Доход в этом году: "/>
+                    <Label Content="{Binding AllIncomeYear}"/>
+                    <Label Content="₽"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Доход за всё время: "/>
+                    <Label Content="{Binding AllIncome}"/>
+                    <Label Content="₽"/>
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
+        
+    </Grid>
+</Window>

@@ -1,0 +1,49 @@
+﻿<Page x:Class="Accounting.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Accounting"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <Button Content="Выйти" Click="SignOut"/>
+            <Button Margin="30 0 0 0" Content="Статистика" Click="ToStatisticsPage" />
+        </StackPanel>
+        
+        
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Row="1">
+            <Label Margin="0 0 0 5" Content="{Binding FIO}"/>
+            <Label Margin="0 5 0 5" Content="Доходы/Расходы"/>
+            <ComboBox MinWidth="200" ItemsSource="{Binding IncomeOrExpenses}" Margin="0 5 0 5"
+                                     DisplayMemberPath="Name"
+                                     SelectedItem="{Binding SelectedIncomeOrExpense}"/>
+            <Button Margin="0 5 0 5" Content="Выбрать" Click="Select"/>
+            <StackPanel Margin="0 5 0 5" Orientation="Horizontal">
+                <StackPanel x:Name="Vanish1">
+                    <Label Content="Тип дохода" MinWidth="100"/>
+                    <ComboBox ItemsSource="{Binding TypeIncomes}"
+                              DisplayMemberPath="Name"
+                              SelectedItem="{Binding SelectedTypeIncome}"/>
+
+                </StackPanel>
+                <StackPanel x:Name="Vanish2">
+                    <Label Content="Тип расхода" MinWidth="100"/>
+                    <ComboBox ItemsSource="{Binding TypeExpenses}"
+                              DisplayMemberPath="Name"
+                              SelectedItem="{Binding SelectedTypeExpense}"/>
+                </StackPanel>
+            </StackPanel>
+            <Label Margin="0 5 0 5" Content="Сумма"/>
+            <TextBox Margin="0 5 0 5" Text="{Binding Sum}"/>
+            <Button Margin="0 5 0 5" Click="Add" Content="Добавить"/>
+        </StackPanel>
+    </Grid>
+</Page>
